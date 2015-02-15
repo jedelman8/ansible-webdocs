@@ -51,7 +51,8 @@ jason@ansible:~/ansible/gendoc$
 
 
 ### Generates the following markdown file:
-Slight modifications made for the Examples section to be able to show the markdown in a markdown a file.
+* Slight modifications made for the Examples section to be able to show the markdown in a markdown a file.
+* Only a snippet and showing the first four modules in the list
 ```
 # Ansible FILES modules
 ### *Local copy of files modules*
