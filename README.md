@@ -5,6 +5,8 @@ Unlike Ansible's `make webdocs` functionality, this can generate a single markdo
 
 There are more error checks that could be built into the module and Jinja2 template to possibly make this more user friendly and more robust.  If there are any suggestions, please feel free to open an issue or PR.
 
+More background here: http://www.jedelman.com/home/generating-web-docs-for-ansible-modules
+
 ### Example Playbook (as can also be seen in the playbook in this repo):
 ```
 ---
