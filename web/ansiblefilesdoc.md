@@ -24,7 +24,7 @@
 
 ---
 
-#### template
+## template
 Templates a file out to a remote server.
 
   * Synopsis
@@ -61,7 +61,7 @@ Templates a file out to a remote server.
 ---
 
 
-#### unarchive
+## unarchive
 Copies an archive to a remote location and unpack it
 
   * Synopsis
@@ -109,7 +109,7 @@ Copies an archive to a remote location and unpack it
 ---
 
 
-#### replace
+## replace
 Replace all instances of a particular string in a file using a back-referenced regular expression.
 
   * Synopsis
@@ -145,7 +145,7 @@ Replace all instances of a particular string in a file using a back-referenced r
 ---
 
 
-#### copy
+## copy
 Copies files to remote locations.
 
   * Synopsis
@@ -196,7 +196,7 @@ Copies files to remote locations.
 ---
 
 
-#### lineinfile
+## lineinfile
 Ensure a particular line is in a file, or replace an existing line using a back-referenced regular expression.
 
   * Synopsis
@@ -252,7 +252,7 @@ Ensure a particular line is in a file, or replace an existing line using a back-
 ---
 
 
-#### acl
+## acl
 Sets and retrieves file ACL information.
 
   * Synopsis
@@ -302,7 +302,7 @@ Sets and retrieves file ACL information.
 ---
 
 
-#### synchronize
+## synchronize
 Uses rsync to make synchronizing file paths in your playbooks quick and easy.
 
   * Synopsis
@@ -396,7 +396,7 @@ synchronize: src=/tmp/helloworld dest=/var/www/helloword rsync_opts=--no-motd,--
 ---
 
 
-#### assemble
+## assemble
 Assembles a configuration file from fragments
 
   * Synopsis
@@ -432,7 +432,7 @@ Assembles a configuration file from fragments
 ---
 
 
-#### xattr
+## xattr
 set/retrieve extended attributes
 
   * Synopsis
@@ -469,7 +469,7 @@ set/retrieve extended attributes
 ---
 
 
-#### stat
+## stat
 retrieve file or file system status
 
   * Synopsis
@@ -512,7 +512,7 @@ retrieve file or file system status
 ---
 
 
-#### file
+## file
 Sets attributes of files
 
   * Synopsis
@@ -558,7 +558,7 @@ Sets attributes of files
 ---
 
 
-#### ini_file
+## ini_file
 Tweak settings in INI files
 
   * Synopsis
@@ -602,7 +602,7 @@ Tweak settings in INI files
 ---
 
 
-#### fetch
+## fetch
 Fetches a file from remote nodes
 
   * Synopsis
