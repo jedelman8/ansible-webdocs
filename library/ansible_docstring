@@ -1,0 +1,77 @@
+#!/usr/bin/env python
+#
+
+DOCUMENTATION = '''
+---
+
+module: ansible_docstring
+short_description: Create markdown file for a modules docs
+description:
+    - Offers ability to dynamically create local markdown files
+      (web docs) to be used offline for custom modules without
+      requiring use of 'make webdocs'.  Also works on Core modules.
+    - Only a single dir is supported in this release (no recursive dirs)
+author: Jason Edelman (@jedelman8)
+requirements:
+    - Ansible must be installed
+    - Modules must have proper Ansible doc and example strings
+    - 'modules' must be the variable name that is registered in the playbook
+    - The Jinja template called ansible-docs.j2 is required
+notes:
+    - This module uses module_docs that that is part of the Ansible project
+      to extract the required strings from Ansible modules
+options:
+    path:
+        description:
+            - absolute path to a directory where the Ansible module(s) are stored
+        required: true
+        default: null
+        choices: []
+        aliases: []
+'''
+
+EXAMPLES = '''
+# FULL PLAYBOOK EXAMPLE
+  - name: get docs and examples for modules
+    ansible_docstring: path=/usr/share/ansible/files/
+    register: modules
+
+  - name: build web/markdown ansible docs
+    template: src=templates/ansible-docs.j2 dest=web/ansiblefilesdoc.md
+'''
+
+from os import walk
+from ansible.utils import module_docs
+
+
+def main():
+
+    module = AnsibleModule(
+        argument_spec=dict(
+            path=dict(required=True),
+        ),
+        supports_check_mode=False
+    )
+
+    path = module.params['path']
+    if path[-1] != '/':
+        path = path + '/'
+
+    all_docs = []
+    errors = []
+    for (dirpath, dirnames, ansible_modules) in walk(path):
+        if dirpath == path:
+            for mod in ansible_modules:
+                try:
+                    doc, plainexamples = module_docs.get_docstring(path+mod)
+                    examples_list = plainexamples.split('\n')
+                    doc['examples'] = examples_list
+                    all_docs.append(doc)
+                except:
+                    errors.append(mod)
+                    continue
+
+    module.exit_json(results=all_docs, errors=errors)
+
+from ansible.module_utils.basic import *
+main()

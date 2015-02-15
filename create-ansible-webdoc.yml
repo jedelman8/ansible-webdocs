@@ -1,0 +1,21 @@
+---
+
+- name: create local markdown doc
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    heading: 'Ansible FILES modules'
+    subheading: 'Local copy of files modules'
+    requirements:
+      - See official Ansible docs
+
+  tasks:
+
+    - name: get docs and examples for modules
+      ansible_docstring: path=/usr/share/ansible/files/
+      register: modules
+
+    - name: build web/markdown ansible docs
+      template: src=templates/ansible-docs.j2 dest=web/ansiblefilesdoc.md
