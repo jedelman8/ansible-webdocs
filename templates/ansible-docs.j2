@@ -7,7 +7,7 @@
 
 ---
 ### Requirements
- {% if requirements is defined %}
+{% if requirements is defined %}
 {% for req in requirements %}
 * {{ req }}
 {% endfor %}
@@ -41,21 +41,28 @@
 {% for k,v in doc.iteritems() %}
 {% if k == 'options' %}
 {% for option,values in v.iteritems() %}
-| {{ option }}  |  {% if values.get('required') != None %} {{ values['required'] | replace('True','yes') | replace('False','no') }} {% endif %} | {% if values.get('defaults') != None %} {{ values['default'] | replace('None','')}} {% endif %} |{% if values.get('choices') != None %} <ul>{% for each in values['choices'] %} <li>{{ each }}</li> {% endfor %}</ul>{% endif %} | {% if values.get('description') != None %}{% for each in values['description'] %} {{ each }} {% endfor %}{% endif %} |
+| {{ option }}  |  {% if values.get('required') != None %} {{ values['required'] | replace('True','yes') | replace('False','no') }} {% endif %} | {% if values.get('default') != None %} {{ values['default'] | replace('None','')}} {% endif %} |{% if values.get('choices') != None %} <ul>{% for each in values['choices'] %} <li>{{ each }}</li> {% endfor %}</ul>{% endif %} | {% if values.get('description') != None %}{% for each in values['description'] %} {{ each }} {% endfor %}{% endif %} |
 {% endfor %}
 {% endif %}
 {% endfor %}
 
+
+ {% if doc['examples'] is defined %}
+
 #### Examples
+
 ```
 {% for each in doc['examples'] %}
 {{ each | replace('{#','{{') | replace('#}','}}') }}
 {% endfor %}
 ```
+{% endif %}
+
 
 {% for k,v in doc.iteritems() %}
 {% if k == 'notes' %}
 #### Notes
+
 {% for note in v %}
 - {{ note }}
 
@@ -68,4 +75,6 @@
 {% endfor %}
 
 ---
-Created by Jason Edelman. February 2015.
+Created by Network to Code, LLC
+For:
+2015

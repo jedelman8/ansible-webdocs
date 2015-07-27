@@ -63,7 +63,11 @@ def main():
         if dirpath == path:
             for mod in ansible_modules:
                 try:
-                    doc, plainexamples = module_docs.get_docstring(path+mod)
+                    try:
+                        doc, plainexamples, returndocs = module_docs.get_docstring(path+mod)
+                    except ValueError:
+                        doc, plainexamples = module_docs.get_docstring(path+mod)
+
                     examples_list = plainexamples.split('\n')
                     doc['examples'] = examples_list
                     all_docs.append(doc)
