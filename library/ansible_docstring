@@ -67,7 +67,7 @@ def main():
                         doc, plainexamples, returndocs = module_docs.get_docstring(path+mod)
                     except ValueError:
                         doc, plainexamples = module_docs.get_docstring(path+mod)
-                    except as e:
+                    except Exception as e:
                         module.fail_json(msg='error', error=str(e))
 
                     try:
