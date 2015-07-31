@@ -67,12 +67,20 @@ def main():
                         doc, plainexamples, returndocs = module_docs.get_docstring(path+mod)
                     except ValueError:
                         doc, plainexamples = module_docs.get_docstring(path+mod)
+                    except as e:
+                        module.fail_json(msg='error', error=str(e))
 
-                    examples_list = plainexamples.split('\n')
-                    doc['examples'] = examples_list
+                    try:
+                        examples_list = plainexamples.split('\n')
+                        doc['examples'] = examples_list
+                    except:
+                        errors.append(doc)
+                        errors.append('error-examples')
+
                     all_docs.append(doc)
                 except:
                     errors.append(mod)
+                    errors.append('unknown')
                     continue
 
     module.exit_json(results=all_docs, errors=errors)
