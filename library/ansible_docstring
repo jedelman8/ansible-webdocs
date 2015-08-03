@@ -76,6 +76,7 @@ def main():
                     except:
                         errors.append(doc)
                         errors.append('error-examples')
+                        continue
 
                     all_docs.append(doc)
                 except:
